@@ -45,19 +45,10 @@ public class attak_otp {
                 int minLength = Math.min(c[i].length, c[j].length);
                 for (int k = 0; k < minLength; k++) {
                     int x = (c[i][k] ^ c[j][k]);
+//                  System.out.println((char) x);
                     if ((x >= 'A' && x <= 'Z') || (x >= 'a' && x <= 'z')) {
-                        if (valChar(i, c[i][k], k)){  
-                            for (int l = 0; l < p.length; l++) {
-                                if (k >= p[l].length || p[l][k] != '_')
-                                    continue;
-                                x = (char) (c[i][k] ^ c[l][k] ^ ' ');
-                                if (l == i || x == 0) {
-                                    p[l][k] = ' ';
-                                }
-                                else {
-                                    p[l][k] = (char) x;
-                                }
-                            }
+                        if (valChar(i, c[i][k], k)){
+                            setPlainTexts(k,i,x);
                         }
                     }
                 }
@@ -79,7 +70,21 @@ public class attak_otp {
 
     }
 
-    private static boolean valChar(int cindex, int ch, int charindex) {
+    static void setPlainTexts(int k , int i , int x) {
+        for (int l = 0; l < p.length; l++) {
+            if (k >= p[l].length || p[l][k] != '_')
+                continue;
+            x = (char) (c[i][k] ^ c[l][k] ^ ' ');
+            if (x == 0) { //space
+                p[l][k] = ' ';
+            }
+            else {
+                p[l][k] = (char) x;
+            }
+        }
+    }
+
+     static boolean valChar(int cindex, int ch, int charindex) {
         int count = 0;
         for (int j = 0; j < MSGS.length; j++) {
 
@@ -88,7 +93,8 @@ public class attak_otp {
             }
 
             int x = (ch ^ c[j][charindex]);
-            if (x == 0) {// space
+//            System.out.println(x);
+            if (x == 0) { //equal char space
                 continue;
             }
             if (!((x >= 'A' && x <= 'Z')||(x >= 'a' && x <= 'z'))) {
