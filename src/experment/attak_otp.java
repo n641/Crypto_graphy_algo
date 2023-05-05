@@ -18,6 +18,8 @@ public class attak_otp {
 
     static int[][] c = new int[MSGS.length][];
     static char[][] p = new char[MSGS.length][];
+    static char[][] ps = new char[MSGS.length][];
+
 
     public static void main(String[] args) {
 
@@ -29,7 +31,10 @@ public class attak_otp {
             }
             c[i]=carr;
             p[i] = new char[c[i].length];
+            ps[i] = new char[c[i].length];
             Arrays.fill(p[i], '_');
+            Arrays.fill(ps[i], '_');
+
         }
 //        for (int i = 0; i < p.length; i++) {
 //            for (int j = 0; j < p[0].length; j++) {
@@ -46,11 +51,9 @@ public class attak_otp {
                 for (int k = 0; k < minLength; k++) {
                     int x = (c[i][k] ^ c[j][k]);
 //                  System.out.println((char) x);
-                    if ((x >= 'A' && x <= 'Z') || (x >= 'a' && x <= 'z')) {
                         if (valChar(i, c[i][k], k)){
                             setPlainTexts(k,i,x);
                         }
-                    }
                 }
             }
         }
@@ -100,7 +103,7 @@ public class attak_otp {
             if (!((x >= 'A' && x <= 'Z')||(x >= 'a' && x <= 'z'))) {
                 count++;
 
-                if (count > 2) {
+                if (count > 1) {
                     return false;
                 }
 
