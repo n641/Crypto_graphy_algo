@@ -1,9 +1,8 @@
+package finalProj;
 
 import java.awt.Color;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.math.BigInteger;
-import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -14,7 +13,6 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
 
-import static AlgoOfDES.KeyGenrator.KeyGenerator;
 import static AlgoOfDES.DES_Massage_Encryption.Encrption;
 
 /*
@@ -28,7 +26,7 @@ import static AlgoOfDES.DES_Massage_Encryption.Encrption;
 public class CS402Lab1 extends javax.swing.JFrame {
 
     /**
-     * Creates new form CS402Lab1
+     * Creates new form finalProj.CS402Lab1
      *
      */
     String mode = "enc";
@@ -41,10 +39,12 @@ public class CS402Lab1 extends javax.swing.JFrame {
 
 
     public static String encrypt(String p, String mode) {
+
         return "";
     }
 
     public static String decrypt(String c, String key) {
+
         return "";
     }
 
@@ -384,10 +384,8 @@ public class CS402Lab1 extends javax.swing.JFrame {
         plotFrame.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
+
+    public  CS402Lab1(String KEY) {
         /*
          * Set the Nimbus look and feel
          */
