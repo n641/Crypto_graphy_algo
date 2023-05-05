@@ -1,3 +1,5 @@
+package finalProj;
+
 public class RowTranspositionCiphers {
     public static void main(String[] args) {
         String text = "attack postponed until two am";
@@ -10,7 +12,7 @@ public class RowTranspositionCiphers {
     }
 
 //    char [] alpha = {'x','y','z'};
-    private static String encrypt(String Key, String plainText) {
+     static String encrypt(String Key, String plainText) {
         String c="";
         String plainText2 = plainText.toLowerCase();
         String p="";

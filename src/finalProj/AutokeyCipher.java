@@ -1,3 +1,5 @@
+package finalProj;
+
 public class AutokeyCipher {
     public static void main(String[] args) {
         String c =encrypt("abcabcdefghijklmnopqrstuvwxyz", "abcdefghijklmnopqrstuvwxyz ");
@@ -9,7 +11,7 @@ public class AutokeyCipher {
     }
 
     static String pk="";
-    private static String encrypt(String Key, String plainText) {
+    public static String encrypt(String Key, String plainText) {
         String c = "";
         Key=Key.toLowerCase();
         plainText=plainText.toLowerCase();
@@ -50,7 +52,7 @@ public class AutokeyCipher {
         return c;
     }
 
-    private static String decrypt(String Key, String cText) {
+    public static String decrypt(String Key, String cText) {
         String p = "";
         Key=Key.toLowerCase();
         cText=cText.toLowerCase();

@@ -1,3 +1,5 @@
+package finalProj;
+
 import java.awt.Point;
 import java.util.Scanner;
 
@@ -16,15 +18,16 @@ public class PlayfairCipher
         char[][] matrix = createMatrix(Key.toLowerCase()); //Monarchy
 
 
-        String  encrypted = playfairEndcoded(matrix , plainText.toLowerCase());
+        String  encrypted = playfairEndcoded(Key , plainText.toLowerCase());
         System.out.print("\nencrpted string is " + encrypted);
 
-        String decrypted = playfairDecoded(matrix , encrypted);
+        String decrypted = playfairDecoded(Key , encrypted);
         System.out.print("\ndecrypted string is " + decrypted);
 
     }
 
-    private static String playfairDecoded(char[][] matrix, String plainText) {
+    static String playfairDecoded(String plainText,String Key) {
+        char[][] matrix = createMatrix(Key.toLowerCase());
         String  decrypted = new String();
         int fchar_row=0, fchar_col=0 , schar_row=0 , schar_col=0 ;
         int fEnc_char_r=0, fEnc_char_c=0 , sEnc_char_r=0,sEnc_char_c=0;
@@ -87,8 +90,8 @@ public class PlayfairCipher
         return decrypted;
     }
 
-    private static String playfairEndcoded(char[][] matrix, String plainText) {
-
+    static String playfairEndcoded( String plainText,String Key) {
+        char[][] matrix = createMatrix(Key.toLowerCase());
         String  encrypted = new String();
         int fchar_row=0, fchar_col=0 , schar_row=0 , schar_col=0 ;
         int fEnc_char_r=0, fEnc_char_c=0 , sEnc_char_r=0,sEnc_char_c=0;
@@ -181,13 +184,13 @@ public class PlayfairCipher
             }
         }
 
-        System.out.println();
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                System.out.print(matrix[i][j] + " ");
-            }
-            System.out.println();
-        }
+//        System.out.println();
+//        for (int i = 0; i < 5; i++) {
+//            for (int j = 0; j < 5; j++) {
+//                System.out.print(matrix[i][j] + " ");
+//            }
+//            System.out.println();
+//        }
 
         return matrix;
     }

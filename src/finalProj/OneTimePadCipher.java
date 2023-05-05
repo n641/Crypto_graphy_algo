@@ -1,3 +1,4 @@
+package finalProj;
 
 import java.security.Key;
 import java.util.Random;
@@ -13,7 +14,7 @@ public class OneTimePadCipher {
     }
 
 //    meet me after the toga party
-private static String encrypt(String Key, String plainText) {
+ static String encrypt(String Key, String plainText) {
     String c = "";
     int K=Integer.parseInt(Key);
     String Key2 =GenerateKey(K , plainText.length());

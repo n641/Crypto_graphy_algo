@@ -1,3 +1,5 @@
+package finalProj;
+
 public class railFenceCipher {
     public static void main(String[] args) {
         String c = encrypt("2","meetmeafterthetogaparty");
@@ -7,7 +9,7 @@ public class railFenceCipher {
 
     }
 
-    private static String encrypt(String Key, String plainText) {
+     static String encrypt(String Key, String plainText) {
         String c ="";
         String p="";
         int key2 =Integer.parseInt(Key);

@@ -1,3 +1,5 @@
+package finalProj;
+
 import java.security.Key;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -19,7 +21,7 @@ public class HillCipher {
 
     }
 
-    private static String encrypt(String Key , String plainText){
+    public static String encrypt(String Key, String plainText){
         String p="";
         int[][] keyMatrix = createKeyMatrix(Key);
         for (int i = 0; i < plainText.length(); i+=2) {
@@ -35,7 +37,7 @@ public class HillCipher {
         return p;
     }
 
-    private static String decrypt(String Key , String c){
+    public static String decrypt(String Key, String c){
         String p="";
         int[][] keyMatrix = createKeyMatrix(Key);
         int[][] keyMatrixinv = createKeyMatrixinverse(keyMatrix);

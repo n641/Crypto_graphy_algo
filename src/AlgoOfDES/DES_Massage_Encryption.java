@@ -112,13 +112,8 @@ public class DES_Massage_Encryption {
     public static String Encrption(String plaintext, String moda ,String key2){
         Keys =KeyGenerator(key2);
         String IP =intialPer(plaintext);
-
         String Left = IP.substring(0,32);
         String Right = IP.substring(32,64);
-
-//        System.out.println(Left);
-//        System.out.println(Right);
-//        System.out.println();
 
         String Left1="";
         String Right1="";
@@ -129,13 +124,7 @@ public class DES_Massage_Encryption {
                 Right1 = GetXOR(Left , F(Right,Keys[i]));
                 Left = Left1;
                 Right=Right1;
-//                System.out.println("string in left  "+(i+1) +" " + Left1);
-//                System.out.println("string in right  "+(i+1) +" " + Right1);
             }
-
-//        System.out.println("hexaCiphr text  "+" " +Integer.parseInt(inverse_Ip)); //problem
-//        String hexaCiphr = decimalToHex(Long.parseLong(inverse_Ip));
-//        System.out.println("hexaCiphr text  "+" " + hexaCiphr);
 
         } else if (Objects.equals(moda, "DE")) {
 

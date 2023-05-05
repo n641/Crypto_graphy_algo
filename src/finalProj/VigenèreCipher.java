@@ -1,3 +1,5 @@
+package finalProj;
+
 public class VigenèreCipher {
     public static void main(String[] args) {
         String c =encrypt("abc", "abcdefghijklmnopqrstuvwxyz");
@@ -6,7 +8,7 @@ public class VigenèreCipher {
         System.out.println(d);
     }
 
-    private static String encrypt(String Key, String plainText) {
+    public static String encrypt(String Key, String plainText) {
         String c = "";
         Key=Key.toLowerCase();
         plainText=plainText.toLowerCase();

@@ -1,3 +1,5 @@
+package finalProj;
+
 public class VernamCipher {
 
     public static void main(String[] args) {
@@ -5,10 +7,8 @@ public class VernamCipher {
 //        System.out.println("the cipher text "+c); //A  A  B  Q  R  O  Q  U  O  K
 //        String d =decrypt("zzzzzzzz" ,c );
 //        System.out.println("the plain text "+d);
-
-        System.out.println(1^1);
     }
-    private static String encrypt(String Key, String plainText) {
+    static String encrypt(String Key, String plainText) {
         String c = "";
         Key=Key.toLowerCase();
         String Key2 ="";

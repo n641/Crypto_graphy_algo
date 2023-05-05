@@ -15,37 +15,100 @@ import org.jfree.data.xy.XYSeriesCollection;
 
 import static AlgoOfDES.DES_Massage_Encryption.Encrption;
 
-/*
- * To change this template, choose Tools | Templates and open the template in
- * the editor.
- */
-/**
- *
- * @author Hanood
- */
-public class CS402Lab1 extends javax.swing.JFrame {
 
-    /**
-     * Creates new form finalProj.CS402Lab1
-     *
-     */
+
+public class CS402Lab1 extends javax.swing.JFrame {
     String mode = "enc";
+    static String cipher ="";
 
     public CS402Lab1() {
         initComponents();
     }
 
     static String[] Keys =new String[16];
+    public static String encrypt(String p, String key) {
+        if(cipher == "DES"){
+            return Encrption(p,"EN" , key);
+        } else if (cipher == "Play Fair") {
+            return PlayfairCipher.playfairEndcoded(p,key);
+        }else if (cipher == "Hill Cipher") {
+            if(key.length()!=4){
+                return "invalid key";
+            }
+            return HillCipher.encrypt(key,p);
+        }else if (cipher == "Vernam Cipher") {
+            return VernamCipher.encrypt(key,p);
+        } else if (cipher=="VigenèreCipher") {
+            return VigenèreCipher.encrypt(key,p);
+        } else if (cipher=="AutokeyCipher") {
+            return AutokeyCipher.encrypt(key,p);
+        } else if (cipher=="OneTimePadCipher") {
+            if (!Character.isDigit(key.charAt(0))){
+                return "invalid key , key must be number of seed of randomize";
+            }
+            return OneTimePadCipher.encrypt(key,p);
+        }else if (cipher=="railFenceCipher") {
+            if (!Character.isDigit(key.charAt(0))){
+                return "invalid key , key must be number ";
+            }
+            return railFenceCipher.encrypt(key,p);
+        }else if (cipher=="RowTranspositionCiphers") {
+            if (!Character.isDigit(key.charAt(0))){
+                return "invalid key , key must be number ";
+            }
+            return RowTranspositionCiphers.encrypt(key,p);
+        }else if (cipher=="Cesar Cipher") {
+            if (!Character.isDigit(key.charAt(0))){
+                return "invalid key , key must be number ";
+            }
+            return caeser.encrypt(p,key);
+        } else if (cipher=="RSA") {
+            return RSA.RSAEncrypt(p);
+        }
 
-
-    public static String encrypt(String p, String mode) {
-
-        return "";
+        return "there is no encrypt here";
     }
-
     public static String decrypt(String c, String key) {
-
-        return "";
+        if(cipher == "DES"){
+            return Encrption(c,"DE" , key);
+        }else if (cipher == "Play Fair") {
+            return PlayfairCipher.playfairDecoded(c,key);
+        }else if (cipher == "Hill Cipher") {
+            if(key.length()!=4){
+                return "invalid key";
+            }
+            return HillCipher.decrypt(key,c);
+        }else if (cipher == "Vernam Cipher") {
+            return VernamCipher.decrypt(key,c);
+        }else if (cipher=="VigenèreCipher") {
+            return VigenèreCipher.decrypt(key,c);
+        }else if (cipher=="AutokeyCipher") {
+            return AutokeyCipher.decrypt(key,c);
+        } else if (cipher=="OneTimePadCipher") {
+            if (!Character.isDigit(key.charAt(0))){
+                return "invalid key , key must be number of seed of randomize";
+            }
+            return OneTimePadCipher.decrypt(key,c);
+        } else if (cipher=="railFenceCipher") {
+            if (!Character.isDigit(key.charAt(0))){
+                return "invalid key , key must be number ";
+            }
+            return railFenceCipher.decrypt(key,c);
+        } else if (cipher=="RowTranspositionCiphers") {
+            if (!Character.isDigit(key.charAt(0))){
+                return "invalid key , key must be number ";
+            }
+            return"sorry '_' ";
+//                    RowTranspositionCiphers.decrypt(key,c);
+        } else if (cipher=="Cesar Cipher") {
+            if (!Character.isDigit(key.charAt(0))){
+                return "invalid key , key must be number ";
+            }
+            return caeser.decrypt(c,key);
+        } else if (cipher=="RSA") {
+            return RSA.RSADecrypt(c);
+        }
+        return "there is no encrypt here";
     }
 
 
@@ -75,7 +138,7 @@ public class CS402Lab1 extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Simple Cipher");
+        setTitle("Cipher"+ cipher);
         setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -251,7 +314,7 @@ public class CS402Lab1 extends javax.swing.JFrame {
         long start = System.currentTimeMillis();
 
 //        Keys =KeyGenerator(key);
-        String c =Encrption(p, "EN",key);
+        String c =encrypt(p ,key);
 
         long end = System.currentTimeMillis();
 
@@ -270,7 +333,7 @@ public class CS402Lab1 extends javax.swing.JFrame {
         long start = System.currentTimeMillis();
 
 //        Keys =KeyGenerator(key);
-        String p = Encrption(c,"DE" , key);
+        String p = decrypt(c, key);
 
         long end = System.currentTimeMillis();
 
@@ -281,7 +344,7 @@ public class CS402Lab1 extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// /////////////////////////here file read
         // TODO add your handling code here:
         try {
             JFileChooser jFileChooser1 = new JFileChooser();
@@ -295,6 +358,8 @@ public class CS402Lab1 extends javax.swing.JFrame {
                 while (scan.hasNext()) {
                     s += scan.nextLine() + "\n";
                 }
+
+                // convert binary to string
 
                 jTextArea2.setText(s.substring(0, s.length() - 1));
 
@@ -385,42 +450,15 @@ public class CS402Lab1 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
 
-    public  CS402Lab1(String KEY) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CS402Lab1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CS402Lab1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CS402Lab1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CS402Lab1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    public  CS402Lab1(String cipher) {
 
-        /*
-         * Create and display the form
-         */
         final CS402Lab1 myForm = new CS402Lab1();
         ImageIcon img = new ImageIcon("Icon.png");
         myForm.setIconImage(img.getImage());
         myForm.getContentPane().setBackground(new Color(255, 255, 255));
         myForm.setLocationRelativeTo(null);
+        CS402Lab1.cipher =cipher;
+        System.out.println("enter to "+ CS402Lab1.cipher);
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
