@@ -26,6 +26,16 @@ public class CS402Lab1 extends javax.swing.JFrame {
     }
 
     static String[] Keys =new String[16];
+
+    public static boolean isDigit(String str){
+        boolean flag =true;
+        for(int i=0; i < str.length(); i++) {
+            if(!Character.isDigit(str.charAt(i))){
+                flag = false;
+            }
+        }
+        return flag;
+    }
     public static String encrypt(String p, String key) {
         if(cipher == "DES"){
             return Encrption(p,"EN" , key);

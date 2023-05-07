@@ -49,10 +49,10 @@ public class attak_otp {
                     continue;
                 int minLength = Math.min(c[i].length, c[j].length);
                 for (int k = 0; k < minLength; k++) {
-                    int x = (c[i][k] ^ c[j][k]);
+//                    int x = (c[i][k] ^ c[j][k]);
 //                  System.out.println((char) x);
                         if (valChar(i, c[i][k], k)){
-                            setPlainTexts(k,i,x);
+                            setPlainTexts(k,i);
                         }
                 }
             }
@@ -73,11 +73,11 @@ public class attak_otp {
 
     }
 
-    static void setPlainTexts(int k , int i , int x) {
+    static void setPlainTexts(int k , int i ) {
         for (int l = 0; l < p.length; l++) {
             if (k >= p[l].length || p[l][k] != '_')
                 continue;
-            x = (char) (c[i][k] ^ c[l][k] ^ ' ');
+            int x = (char) (c[i][k] ^ c[l][k] ^ ' ');
             if (x == 0) { //space
                 p[l][k] = ' ';
             }
