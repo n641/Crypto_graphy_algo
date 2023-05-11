@@ -3,6 +3,8 @@ package finalProj;
 import java.awt.Color;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import java.math.BigInteger;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -73,7 +75,9 @@ public class CS402Lab1 extends javax.swing.JFrame {
             }
             return caeser.encrypt(p,key);
         } else if (cipher=="RSA") {
-            return RSA.RSAEncrypt(p);
+            RSA rsa = new RSA(1024);
+            List<BigInteger> plain = rsa.encryption(p);
+            return plain.toString();
         }
 
         return "there is no encrypt here";
@@ -116,7 +120,9 @@ public class CS402Lab1 extends javax.swing.JFrame {
             }
             return caeser.decrypt(c,key);
         } else if (cipher=="RSA") {
-            return RSA.RSADecrypt(c);
+            RSA rsa = new RSA(1024);
+            List<BigInteger> cipher = rsa.encryption(c);
+            return cipher.toString();
         }
         return "there is no encrypt here";
     }
